@@ -1,21 +1,16 @@
 package com.kwu.flagpicker.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-public class Falgpicker {
-
+public class Countries {
     private Long id;
-    @NotBlank(message = "Continent name is mandatory")
-    private String continent;
     @NotBlank(message = "Country name is mandatory")
     private String countryname;
-    @NotBlank(message = "Country flag is mandatory")
+    @NotBlank(message = "Country flag name is mandatory")
     private String countryflag;
+    private Continents continent;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,14 +20,6 @@ public class Falgpicker {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getContinent() {
-        return continent;
-    }
-
-    public void setContinent(String continent) {
-        this.continent = continent;
     }
 
     public String getCountryname() {
@@ -50,4 +37,14 @@ public class Falgpicker {
     public void setCountryflag(String countryflag) {
         this.countryflag = countryflag;
     }
+
+    @ManyToOne(targetEntity = Continents.class)
+    public Continents getContinent() {
+        return continent;
+    }
+
+    public void setContinent(Continents continent) {
+        this.continent = continent;
+    }
+
 }

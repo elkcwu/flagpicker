@@ -1,8 +1,15 @@
 CREATE SCHEMA `flag-picker` ;
-create table flagpicker(
+
+create table continents(
     id INT unsigned NOT NULL AUTO_INCREMENT,
     continent VARCHAR(150) NOT NULL,
+    PRIMARY KEY (id)
+)
+
+create table countries(
+    id INT unsigned NOT NULL AUTO_INCREMENT,
     countryname VARCHAR(150) NOT NULL,
     countryflag VARCHAR(2) NOT NULL,
     PRIMARY KEY (id)
 )
+
