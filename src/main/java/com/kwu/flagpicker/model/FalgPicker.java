@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-public class FalgPicker {
+public class Falgpicker {
 
     private Long id;
     @NotBlank(message = "Continent name is mandatory")
