@@ -4,13 +4,21 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
+@Table(name = "countries")
 public class Countries {
     private Long id;
     @NotBlank(message = "Country name is mandatory")
     private String countryname;
     @NotBlank(message = "Country flag name is mandatory")
     private String countryflag;
-    private Continents continent;
+    private Long continentsId;
+
+    public Countries(){}
+    public Countries(Long id, @NotBlank(message = "Country name is mandatory") String countryname, @NotBlank(message = "Country flag name is mandatory") String countryflag){
+        this.id = id;
+        this.countryname = countryname;
+        this.countryflag = countryflag;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,13 +46,11 @@ public class Countries {
         this.countryflag = countryflag;
     }
 
-    @ManyToOne(targetEntity = Continents.class)
-    public Continents getContinent() {
-        return continent;
+    public Long getContinentsId() {
+        return continentsId;
     }
 
-    public void setContinent(Continents continent) {
-        this.continent = continent;
+    public void setContinentsId(Long continentsId) {
+        this.continentsId = continentsId;
     }
-
 }

@@ -10,18 +10,17 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @EnableSwagger2
-@Transactional
 public class FlagPickerService {
 
     @Autowired
-    ContinentsRepository continentsRepository;
-    CountriesRepository countriesRepository;
+    private ContinentsRepository continentsRepository;
+    @Autowired
+    private CountriesRepository countriesRepository;
 
     @Cacheable("flagPicker")
     @HystrixCommand(fallbackMethod = "getFallbackAllContinents")
@@ -32,21 +31,31 @@ public class FlagPickerService {
         return continentList;
     }
 
-    public String getFallbackAllContinents(){
-        return "Cannot get Continents list";
+    @HystrixCommand
+    public List<Continents> getFallbackAllContinents(){
+        List<Continents> continentList = new ArrayList<>();
+        Continents continent = new Continents(000L, "Not a valid continent");
+        continentList.add(continent);
+        return continentList;
     }
 
     @Cacheable("flagPicker")
     @HystrixCommand(fallbackMethod = "getFallbackAllCountriesByConId")
     public List<Countries> getAllCountriesByConId(Long continentid){
         List<Countries> countriesList = new ArrayList<>();
-        countriesRepository.findByContinentId(continentid)
+        countriesRepository.findByContinentsId(continentid)
                 .forEach(countriesList :: add);
         return countriesList;
     }
 
-    public String getFallbackAllCountriesByConId(Long continentid){
-        return "Cannot get Countries list";
+    @HystrixCommand
+    public List<Countries> getFallbackAllCountriesByConId(Long continentsid){
+        List<Countries> countriesList = new ArrayList<>();
+        Countries coun = new Countries();
+        coun.setCountryname("Not real continent name");
+        coun.setCountryflag("00");
+        coun.setId(000L);
+        countriesList.add(coun);
+        return countriesList;
     }
-
 }

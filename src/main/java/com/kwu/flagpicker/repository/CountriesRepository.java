@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CountriesRepository extends CrudRepository<Countries, Long> {
-    public List<Countries> findByContinentId(Long continentId);
+public interface CountriesRepository extends CrudRepository<Countries, Long>{
+    public List<Countries> findByContinentsId(Long continentid);
 }

@@ -10,6 +10,7 @@ create table countries(
     id INT unsigned NOT NULL AUTO_INCREMENT,
     countryname VARCHAR(150) NOT NULL,
     countryflag VARCHAR(2) NOT NULL,
+    continents_id INT NOT NULL,
     PRIMARY KEY (id)
 )
 

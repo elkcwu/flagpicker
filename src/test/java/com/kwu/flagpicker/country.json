@@ -1,0 +1,20 @@
+[
+  {
+    id: 2,
+    countryname: "Nigeria",
+    countryflag: "NG",
+    continent: {
+      id: 1,
+      continent: "Africa"
+    }
+  },
+  {
+    id: 3,
+    countryname: "Ethiopia",
+    countryflag: "ET",
+    continent: {
+      id: 1,
+      continent: "Africa"
+    }
+  }
+]

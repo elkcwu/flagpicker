@@ -1,17 +1,22 @@
 package com.kwu.flagpicker.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
+@Access(AccessType.PROPERTY)
+@Table(name = "continents")
 public class Continents {
 
     private Long id;
     @NotBlank(message = "Continent name is mandatory")
     private String continent;
+
+    public Continents(){}
+    public Continents(Long id, @NotBlank(message = "Continent name is mandatory") String continent) {
+        this.id = id;
+        this.continent = continent;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -10,19 +10,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/flagpicker/")
+@RequestMapping("/flagpicker")
 public class FlagPickerController {
 
     @Autowired
-    FlagPickerService flagPickerService;
+    private FlagPickerService flagPickerService;
 
-    @GetMapping("v1/continent")
+    @CrossOrigin
+    @GetMapping("/v1/continent")
     public List<Continents> getAllContinents() throws ResourceNotFondException {
         return flagPickerService.getAllContinents();
     }
 
-    @GetMapping("v1/countries/{id}")
-    public List<Countries> getAllContinents(@PathVariable(value = "id") Long continentId) throws ResourceNotFondException {
-        return flagPickerService.getAllCountriesByConId(continentId);
+    @CrossOrigin
+    @GetMapping("/v1/countries/{id}")
+    public List<Countries> getAllContinents(@PathVariable(value = "id") Long continid) throws ResourceNotFondException {
+        return flagPickerService.getAllCountriesByConId(continid);
     }
 }
